@@ -3,12 +3,14 @@ package guru.springframework.spring5webapp.domain;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+
+
 @Entity
 public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long Id;
+    private Long id;
 
     private String title;
     private String isbn;
@@ -17,7 +19,6 @@ public class Book {
     @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "author_id"))
     private Set<Author> authors = new HashSet<>();
-
 
     public Book() {
     }
@@ -28,11 +29,11 @@ public class Book {
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getTitle() {
@@ -62,7 +63,7 @@ public class Book {
     @Override
     public String toString() {
         return "Book{" +
-                "Id=" + Id +
+                "id=" + id +
                 ", title='" + title + '\'' +
                 ", isbn='" + isbn + '\'' +
                 ", authors=" + authors +
@@ -76,11 +77,11 @@ public class Book {
 
         Book book = (Book) o;
 
-        return Id != null ? Id.equals(book.Id) : book.Id == null;
+        return id != null ? id.equals(book.id) : book.id == null;
     }
 
     @Override
     public int hashCode() {
-        return Id != null ? Id.hashCode() : 0;
+        return id != null ? id.hashCode() : 0;
     }
 }
